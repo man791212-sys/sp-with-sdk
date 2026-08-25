@@ -1,0 +1,27 @@
+{
+  "groups": [
+    {
+      "name": "app",
+      "type": "mip.mva.sp.config.ConfigBean",
+      "sourceType": "mip.mva.sp.config.ConfigBean"
+    }
+  ],
+  "properties": [
+    {
+      "name": "app.ca-list-from-api",
+      "type": "java.util.ArrayList<mip.mva.sp.config.vo.CaVO>",
+      "sourceType": "mip.mva.sp.config.ConfigBean"
+    },
+    {
+      "name": "app.verify-config",
+      "type": "mip.mva.sp.config.vo.VerifyConfigVO",
+      "sourceType": "mip.mva.sp.config.ConfigBean"
+    },
+    {
+      "name": "app.verify-file-path",
+      "type": "java.lang.String",
+      "sourceType": "mip.mva.sp.config.ConfigBean"
+    }
+  ],
+  "hints": []
+}
