@@ -1,0 +1,67 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.18'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'
+    id 'war'
+}
+
+group = 'mip.mva'
+version = '3.6.0'
+description = 'SP With SDK'
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+repositories {
+    mavenCentral()
+
+    maven { url 'https://maven.cubrid.org' }
+
+    maven { url uri("${projectDir}/libs") }
+}
+
+dependencies {
+    // Spring Boot
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    runtimeOnly 'org.springframework.boot:spring-boot-starter-tomcat'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // WebSocket
+    implementation 'org.eclipse.jetty.websocket:websocket-client'
+
+    // Omnione SDK
+    implementation 'com.raonsecure.omnione:OmniEnt-SDK-Core:1.0.3.31'
+    implementation 'com.raonsecure.omnione:OmniEnt-SDK-ServerCore:1.0.3.38'
+    implementation 'com.raonsecure.omnione:OmniEnt-SDK-Verifier:1.0.3.33'
+    implementation 'com.raonsecure.license:RSLicenseSDK_jdk16:1.1.4'
+
+    // Utility
+    implementation 'com.google.code.gson:gson'
+    implementation 'com.google.guava:guava:20.0'
+    implementation 'org.bouncycastle:bcpkix-jdk15to18:1.79'
+    implementation 'org.bouncycastle:bcprov-jdk15to18:1.79'
+    implementation 'org.bouncycastle:bcutil-jdk15to18:1.79'
+    implementation 'org.apache.commons:commons-lang3'
+
+    // Database
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+    implementation 'com.oracle.database.jdbc:ojdbc8'
+    implementation 'com.ibm.db2:jcc'
+    implementation 'org.mariadb.jdbc:mariadb-java-client'
+    implementation 'com.h2database:h2'
+    implementation 'org.hsqldb:hsqldb'
+    implementation 'org.postgresql:postgresql'
+    implementation 'cubrid:cubrid-jdbc:11.2.0.0035'
+}
+
+bootWar {
+    archiveFileName.set("${project.name}.war")
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << "-Xlint:-options"
+}

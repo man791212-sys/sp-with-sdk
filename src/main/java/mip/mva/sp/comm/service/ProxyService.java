@@ -1,0 +1,60 @@
+package mip.mva.sp.comm.service;
+
+import mip.mva.sp.comm.exception.SpException;
+import mip.mva.sp.comm.vo.VP;
+
+/**
+ * @Project     : 모바일 운전면허증 서비스 구축 사업
+ * @PackageName : mip.mva.sp.comm.service
+ * @FileName    : ProxyService.java
+ * @Author      : 민기주
+ * @Date        : 2026. 4. 9.
+ * @Description : Proxy 검증 Service
+ * 
+ * <pre>
+ * ==================================================
+ * DATE            AUTHOR           NOTE
+ * ==================================================
+ * 2026. 4. 9.     민기주           최초생성
+ * </pre>
+ */
+public interface ProxyService {
+
+	/**
+	 * DID Assertion 생성
+	 * 
+	 * @param nonce Nonce
+	 * @return DID Assertion
+	 * @throws SpException
+	 */
+	String makeDIDAssertion(String nonce) throws SpException;
+
+	/**
+	 * Profile 요청
+	 * 
+	 * @param trxcode 거래코드
+	 * @return Base64로 인코딩된 Profile
+	 * @throws SpException
+	 */
+	String getProfile(String trxcode) throws SpException;
+
+	/**
+	 * VP 검증
+	 * 
+	 * @param trxcode 거래코드
+	 * @param vp VP 정보
+	 * @return 검증 결과
+	 * @throws SpException
+	 */
+	Boolean verifyVp(String trxcode, VP vp) throws SpException;
+
+	/**
+	 * 오류 전송
+	 * 
+	 * @param trxcode 거래코드
+	 * @param errmsg 오류 메세지
+	 * @throws SpException
+	 */
+	void sendError(String trxcode, String errmsg) throws SpException;
+
+}
